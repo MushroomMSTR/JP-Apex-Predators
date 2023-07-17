@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ApexPredator: Codable {
+struct ApexPredator: Codable, Identifiable {
 	let id: Int
 	let name: String
 	let type: String
