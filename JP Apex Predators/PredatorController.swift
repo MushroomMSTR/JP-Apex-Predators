@@ -27,11 +27,12 @@ class PredatorController {
 		}
 	}
 	
-	func sortByAlphabet() {
-		apexPredators.sort(by: { $0.name < $1.name })
+	func sortedByAlphabet() -> [ApexPredator] {
+		return apexPredators.sorted(by: { $0.name < $1.name })
 	}
 	
-	func sortByMovieAppearance() {
-		apexPredators.sort(by: { $0.id < $1.id })
+	func sortedByMovieAppearance() -> [ApexPredator] {
+		return apexPredators.sorted(by: { $0.id < $1.id })
 	}
 }
+
