@@ -12,13 +12,14 @@ struct ContentView: View {
 	let apController = PredatorController()
 	@State var sortAlphabet = false
 	@State var currentFilter = "All"
+	@State var currentMovieFilter = "All"
 	@State var searchText = ""
 	
 	var body: some View {
 		NavigationView {
 			List {
 				ForEach(sortAlphabet ? apController.sortedByAlphabet() : apController.sortedByMovieAppearance()) { predator in
-					if searchText.isEmpty || predator.name.lowercased().contains(searchText.lowercased()) {
+					if (searchText.isEmpty || predator.name.lowercased().contains(searchText.lowercased()) || predator.movies.contains(where: { $0.lowercased().contains(searchText.lowercased()) })) && (currentMovieFilter == "All" || predator.movies.contains(currentMovieFilter)) {
 						NavigationLink(destination: PredatorDetail(predator: predator)) {
 							PredatorRow(predator: predator)
 						}
@@ -56,6 +57,11 @@ struct ContentView: View {
 								}
 							}
 						}
+						Picker("Filter by Movie", selection: $currentMovieFilter.animation()) {
+							ForEach(["All"] + apController.movieFilters, id: \.self) { movie in
+								Text(movie)
+							}
+						}
 					} label: {
 						Image(systemName: "slider.horizontal.3")
 							.foregroundColor(.gray)
@@ -65,6 +71,7 @@ struct ContentView: View {
 		}
 	}
 }
+
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {

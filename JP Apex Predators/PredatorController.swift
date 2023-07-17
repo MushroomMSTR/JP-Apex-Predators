@@ -16,6 +16,20 @@ class PredatorController {
 		decodeApexPredatorData()
 	}
 	
+	var movieFilters: [String] {
+		var movies: [String] = []
+		allApexPredators.forEach { predator in
+			movies.append(contentsOf: predator.movies)
+		}
+		return Array(Set(movies)).sorted()
+	}
+	
+	func filterBy(movie: String) {
+		apexPredators = allApexPredators.filter {
+			$0.movies.contains(movie)
+		}
+	}
+	
 	func decodeApexPredatorData() {
 		if let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") {
 			do {
