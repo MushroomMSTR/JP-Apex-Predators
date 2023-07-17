@@ -16,7 +16,10 @@ struct ContentView: View {
 	@State var searchText = ""
 	
 	var body: some View {
-		NavigationView {
+		
+		apController.filterBy(type: currentFilter)
+
+		return NavigationView {
 			List {
 				ForEach(sortAlphabet ? apController.sortedByAlphabet() : apController.sortedByMovieAppearance()) { predator in
 					if (searchText.isEmpty || predator.name.lowercased().contains(searchText.lowercased()) || predator.movies.contains(where: { $0.lowercased().contains(searchText.lowercased()) })) && (currentMovieFilter == "All" || predator.movies.contains(currentMovieFilter)) {
