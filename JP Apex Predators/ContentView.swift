@@ -12,20 +12,21 @@ struct ContentView: View {
 	let apController = PredatorController()
 	@State var sortAlphabet = false
 	@State var currentFilter = "All"
+	@State var searchText = ""
 	
 	var body: some View {
-		
-		apController.filterBy(type: currentFilter) // I want to do the same with this code, I don't want to have to write return
-		
-		return NavigationView {
+		NavigationView {
 			List {
 				ForEach(sortAlphabet ? apController.sortedByAlphabet() : apController.sortedByMovieAppearance()) { predator in
-					NavigationLink(destination: PredatorDetail(predator: predator)) {
-						PredatorRow(predator: predator)
+					if searchText.isEmpty || predator.name.lowercased().contains(searchText.lowercased()) {
+						NavigationLink(destination: PredatorDetail(predator: predator)) {
+							PredatorRow(predator: predator)
+						}
 					}
 				}
 			}
 			.navigationTitle("Apex Predators")
+			.searchable(text: $searchText)
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
 					Button {
