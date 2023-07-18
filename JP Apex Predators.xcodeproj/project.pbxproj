@@ -61,12 +61,10 @@
 		746D2E542A63D01A006B1208 /* JP Apex Predators */ = {
 			isa = PBXGroup;
 			children = (
+				74E3FECE2A667A9200C7D9F8 /* Model */,
+				74E3FECF2A667AA400C7D9F8 /* View */,
+				74E3FED02A667AB700C7D9F8 /* Controller */,
 				746D2E552A63D01A006B1208 /* JP_Apex_PredatorsApp.swift */,
-				746D2E882A64902E006B1208 /* ApexPredator.swift */,
-				746D2E9B2A6556F2006B1208 /* PredatorController.swift */,
-				746D2E572A63D01A006B1208 /* ContentView.swift */,
-				746D2E9D2A6562D5006B1208 /* PredatorRow.swift */,
-				746D2E9F2A65708E006B1208 /* PredatorDetail.swift */,
 				746D2E862A645BD4006B1208 /* jpapexpredators.json */,
 				746D2E592A63D01B006B1208 /* Assets.xcassets */,
 				746D2E5B2A63D01C006B1208 /* Preview Content */,
@@ -80,6 +78,32 @@
 				746D2E5C2A63D01C006B1208 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		74E3FECE2A667A9200C7D9F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				746D2E882A64902E006B1208 /* ApexPredator.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		74E3FECF2A667AA400C7D9F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				746D2E572A63D01A006B1208 /* ContentView.swift */,
+				746D2E9D2A6562D5006B1208 /* PredatorRow.swift */,
+				746D2E9F2A65708E006B1208 /* PredatorDetail.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74E3FED02A667AB700C7D9F8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				746D2E9B2A6556F2006B1208 /* PredatorController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
