@@ -7,13 +7,16 @@
 
 import SwiftUI
 
+// MARK: - PredatorRow
+// This view represents a single row in the list of apex predators.
 struct PredatorRow: View {
 	
+	// The apex predator that the row will represent
 	let predator: ApexPredator
 	
-    var body: some View {
+	var body: some View {
 		HStack {
-			// Dino Image
+			// Display an image of the predator
 			Image(predator.name.lowercased().filter { $0 != " "})
 				.resizable()
 				.scaledToFit()
@@ -21,10 +24,10 @@ struct PredatorRow: View {
 				.shadow(color: .white, radius: 0.5, x: 0, y: 0)
 			
 			VStack(alignment: .leading) {
-				// Name
+				// Display the name of the predator
 				Text(predator.name)
 					.fontWeight(.semibold)
-				// Type
+				// Display the type of the predator with a background color depending on the type
 				Text(predator.type.capitalized)
 					.font(.subheadline)
 					.fontWeight(.semibold)
@@ -36,9 +39,11 @@ struct PredatorRow: View {
 						)
 			}
 		}
-    }
+	}
 }
 
+// MARK: - PredatorRow_Previews
+// SwiftUI preview provider for PredatorRow
 struct PredatorRow_Previews: PreviewProvider {
     static var previews: some View {
 		let movieScene = MovieScene(id: 3, movie: "Jurassic Park III", sceneDescription: "A young adult Tyrannosaurus appears in Jurassic Park 3. According to the official size charts, it is 37 feet long and 14.5 feet tall. When Alan Grant and the other survivors escape the Spinosaurus, they encounter the creature who is just feeding on another dinosaur. The group runs back towards the Spinosaurus and a huge battle occurs between the Tyrannosaurus and the Spinosaurus. The Spinosaurus kills the T-Rex by snapping its neck in its powerful jaws.")

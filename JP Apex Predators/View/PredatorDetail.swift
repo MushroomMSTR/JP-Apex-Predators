@@ -7,18 +7,25 @@
 
 import SwiftUI
 
+// MARK: - PredatorDetail
+// This view represents the detail view for an apex predator.
 struct PredatorDetail: View {
 	
+	// The apex predator that the detail view will represent
 	let predator: ApexPredator
+	
+	// A state variable to control whether the image of the predator is full screen or not
 	@State private var isImageFullScreen = false
 	
 	var body: some View {
 		ScrollView {
 			VStack(alignment: .trailing) {
+				// Display an image based on the predator's type
 				Image(predator.type)
 					.resizable()
 					.scaledToFit()
 				
+				// Display an image of the predator which can be toggled to full screen
 				Image(predator.name.lowercased().filter { $0 != " " })
 					.resizable()
 					.scaledToFit()
@@ -28,16 +35,19 @@ struct PredatorDetail: View {
 					.offset(y: -230)
 					.rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
 					.onTapGesture {
+						// Toggle full screen when the image is tapped
 						withAnimation {
 							self.isImageFullScreen.toggle()
 						}
 					}
 								
 				VStack(alignment: .leading) {
+					// Display the name of the predator
 					Text(predator.name)
 						.font(.largeTitle)
 						.padding(.bottom, 8)
 					
+					// Display the movies the predator appears in
 					Text("Appears In:")
 						.font(.title3)
 					
@@ -46,6 +56,7 @@ struct PredatorDetail: View {
 							.font(.subheadline)
 					}
 					
+					// Display the scenes the predator appears in for each movie
 					Text("Movie Moments")
 						.font(.title)
 						.padding(.top, 15)
@@ -59,6 +70,7 @@ struct PredatorDetail: View {
 							.padding(.bottom, 15)
 					}
 					
+					// Display a link for more information about the predator
 					Text("Read More:")
 						.font(.caption)
 					Link(predator.link, destination: URL(string: predator.link)!)
@@ -73,6 +85,8 @@ struct PredatorDetail: View {
 	}
 }
 
+// MARK: - PredatorDetail_Previews
+// SwiftUI preview provider for PredatorDetail
 struct PredatorDetail_Previews: PreviewProvider {
     static var previews: some View {
 		let movieScene1 = MovieScene(id: 3, movie: "Jurassic Park III", sceneDescription: "A young adult Tyrannosaurus appears in Jurassic Park 3. According to the official size charts, it is 37 feet long and 14.5 feet tall. When Alan Grant and the other survivors escape the Spinosaurus, they encounter the creature who is just feeding on another dinosaur. The group runs back towards the Spinosaurus and a huge battle occurs between the Tyrannosaurus and the Spinosaurus. The Spinosaurus kills the T-Rex by snapping its neck in its powerful jaws.")
